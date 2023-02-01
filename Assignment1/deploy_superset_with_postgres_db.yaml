@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: superset-postgres-db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: superset
+  template:
+    metadata:
+      labels:
+        app: superset
+    spec:
+      containers:
+      - name: superset
+        image: apache/superset:latest
+        env:
+        - name: SQLALCHEMY_DATABASE_URI
+          value: "postgresql://superset_user:superset_pass@postgres-service:5432/superset_db"
+        ports:
+        - containerPort: 8088
+          name: superset
+
