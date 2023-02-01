@@ -1,7 +1,8 @@
+# PostgreSQL Deployment YAML file
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-deployment
+  name: postgres-airflow-deployment
 spec:
   replicas: 1
   selector:
@@ -13,14 +14,14 @@ spec:
         app: postgres
     spec:
       containers:
-        - name: postgres
+        - name: postgres-airflow
           image: postgres:latest
           ports:
             - containerPort: 5432
           env:
-            - name: POSTGRES_USER
-              value: superset_user
-            - name: POSTGRES_PASSWORD
-              value: superset_pass
             - name: POSTGRES_DB
-              value: superset_db
+              value: airflow_db
+            - name: POSTGRES_USER
+              value: airflow_user
+            - name: POSTGRES_PASSWORD
+              value: airflow_pass

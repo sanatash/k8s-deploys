@@ -1,6 +1,13 @@
-# deploys the superset pod with container
-kubectl run superset-deployment --image=apache/superset
-# expose superset service
-kubectl expose pod/superset-deployment --port=8080 --target-port=8088 --type=NodePort
-# receives url of tunnel that exposes this service on minikube running on localhost machine
-minikube service superset-deployment --url
+kubectl run superset --image=apache/superset
+kubectl get pods
+kubectl expose pod/superset --port=8080 --target-port=8088 --type=NodePort
+kubectl get svc
+minikube service superset --url
+
+
+kubectl run airflow --image=puckel/docker-airflow
+kubectl get pods
+kubectl expose pod/airflow --port=8080 --target-port=8080 --type=NodePort
+kubectl get svc
+minikube service airflow --url
+

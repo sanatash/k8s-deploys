@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-postgres-db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: airflow
+  template:
+    metadata:
+      labels:
+        app: airflow
+    spec:
+      containers:
+        - name: airflow
+          image: puckel/docker-airflow:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: POSTGRES_HOST
+              value: postgres_airflow
+            - name: POSTGRES_DB
+              value: airflow_db
+            - name: POSTGRES_USER
+              value: airflow_user
+            - name: POSTGRES_PASSWORD
+              value: airflow_pass
