@@ -1,0 +1,70 @@
+# Deployment for the "cheddar" application
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cheddar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cheddar
+  template:
+    metadata:
+      labels:
+        app: cheddar
+    spec:
+      containers:
+      - name: cheddar
+        image: 2205experts/cheddar-image:23.0
+        ports:
+        - containerPort: 80
+
+---
+# Service for the "cheddar" deployment
+apiVersion: v1
+kind: Service
+metadata:
+  name: cheddar-svc
+spec:
+  selector:
+    app: cheddar
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    protocol: TCP
+---
+# Deployment for the "gauda" application
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gauda
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gauda
+  template:
+    metadata:
+      labels:
+        app: gauda
+    spec:
+      containers:
+      - name: gauda
+        image: 2205experts/gauda-image:23.0
+        ports:
+        - containerPort: 80
+---
+# Service for the "gauda" deployment
+apiVersion: v1
+kind: Service
+metadata:
+  name: gauda-svc
+spec:
+  selector:
+    app: gauda
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    protocol: TCP

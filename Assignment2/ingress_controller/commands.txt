@@ -1,0 +1,28 @@
+minikube addons enable ingress
+cd ingress_controller
+kubectl apply -f ./
+add to /etc/hosts: 127.0.0.1 ams.cheese.com
+
+On Windows, the process of adding an IP address and hostname mapping to the local DNS resolver
+is similar to that on Unix-based systems. Here's how to do it:
+1. Open the Start menu and search for "Notepad". Right-click on the "Notepad" app and select "Run as administrator".
+2. From the Notepad menu, select "File" and then "Open".
+3. In the file open dialog, navigate to the C:\Windows\System32\drivers\etc folder.
+4. Change the file type from "Text Documents (.txt)" to "All Files (.*)".
+5. Select the hosts file and click "Open".
+Add a new line to the file in the following format:
+<IP address> <hostname>
+6. Save the file and close Notepad.
+To test the mapping, try pinging the hostname from the command line using the command "ping minikube".
+
+minikube tunnel
+run in browser: https://ams.cheese.com/cheddar
+                https://ams.cheese.com/gauda
+
+
+* cheese-secret.yaml gives TLS self-signed certificate which browser doesn't recognize when
+receives it from the server, so the connection which will be established finally will be non-secured
+
+** The deployment was done from nginxdemos/hello:plain-text image is an image from the "nginxdemos"
+repository on Docker Hub. The "hello" image is part of a set of demo images that demonstrate various
+features of the Nginx web server.

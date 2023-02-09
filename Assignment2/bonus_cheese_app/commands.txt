@@ -1,0 +1,16 @@
+# Build gauda and cheddar docker images
+docker build -t 2205experts/gauda-image:23.0 gauda_image/.
+docker build -t 2205experts/cheddar-image:23.0 cheddar_image/.
+
+# push them to the repository
+docker push 2205experts/gauda-image:23.0
+docker push 2205experts/cheddar-image:23.0
+
+# remove images locally
+docker rmi 2205experts/gauda-image:23.0
+docker rmi 2205experts/cheddar-image:23.0
+
+kubectl apply -f cheese-deployment.yaml
+kubectl apply -f cheese-ingress.yaml
+
+kubectl get pods

@@ -1,0 +1,27 @@
+kubectl apply -f config-map.yaml
+kubectl describe configmap/nginx-configmap
+kubectl apply -f deploy_ngnix_with_config.yaml
+kubectl get deploy
+kubectl get pods
+kubectl apply -f service_nginx_with_config.yaml
+kubectl get svc
+kubectl exec -it nginx-deployment-564468f49f-xwscd -- bash
+
+# From inside the container:
+root@nginx-deployment-564468f49f-xwscd:/# env | grep NGINX
+    env_file.txt=NGINX_ERROR_LOG_LEVEL=info
+    NGINX_WORKER_PROCESSES=4
+    NGINX_VERSION=1.23.3
+
+root@nginx-deployment-564468f49f-xwscd:/# cd /usr/share/nginx/html
+root@nginx-deployment-564468f49f-xwscd:/usr/share/nginx/html# cat index.html
+    <html>
+        <head>
+            <title>My Page</title>
+        </head>
+        <body>
+            <h1>Welcome to my Page!</h1>
+        </body>
+    </html>
+
+minikube service nginx-service --url

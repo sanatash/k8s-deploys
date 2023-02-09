@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-configmap
+data:
+  index.html: |
+    <html>
+      <head>
+        <title>My Page</title>
+      </head>
+      <body>
+        <h1>Welcome to my Page!</h1>
+      </body>
+    </html>
+  env_file.txt: |
+    NGINX_ERROR_LOG_LEVEL=info
+    NGINX_WORKER_PROCESSES=4
