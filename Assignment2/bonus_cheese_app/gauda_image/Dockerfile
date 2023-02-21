@@ -1,16 +1,14 @@
 
-# Use the Nginx base image
+# Use official nginx image as base image
 FROM nginx
 
-# Copy the custom Nginx configuration file
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copy the custom index file to the appropriate location
+COPY gauda-index.html /usr/share/nginx/html/index.html
+RUN mkdir /usr/share/nginx/html/images
+COPY Gouda_36_mois.jpg /usr/share/nginx/html/images/gauda.jpg
 
-# Copy the default welcome pages for the /gauda path
-COPY gauda-index.html /usr/share/nginx/html/gauda-index.html
-
-# Expose port 80 for incoming HTTP traffic
+# Expose port 80 for incoming traffic - serves here as reference, because already exposed in original nginx image
 EXPOSE 80
 
-# Set the default command to start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+
 

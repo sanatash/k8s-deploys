@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: cheddar
-        image: 2205experts/cheddar-image:23.0
+        image: 2205experts/cheddar-image:27.0
         ports:
         - containerPort: 80
 
@@ -51,7 +51,7 @@ spec:
     spec:
       containers:
       - name: gauda
-        image: 2205experts/gauda-image:23.0
+        image: 2205experts/gauda-image:27.0
         ports:
         - containerPort: 80
 ---

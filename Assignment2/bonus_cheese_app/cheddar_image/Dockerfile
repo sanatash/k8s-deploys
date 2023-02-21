@@ -1,16 +1,12 @@
 
-# Use the Nginx base image
+# Use official nginx image as base image
 FROM nginx
 
-# Copy the custom Nginx configuration file
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copy the custom index file to the appropriate location
+COPY cheddar-index.html /usr/share/nginx/html/index.html
+RUN mkdir /usr/share/nginx/html/images
+COPY Somerset-Cheddar.jpg /usr/share/nginx/html/images/cheddar.jpg
 
-# Copy the default welcome pages for the /cheddar path
-COPY cheddar-index.html /usr/share/nginx/html/cheddar-index.html
-
-# Expose port 80 for incoming HTTP traffic
+# Expose port 80 for incoming traffic- serves here as reference, because already exposed in original nginx image
 EXPOSE 80
-
-# Set the default command to start Nginx
-CMD ["nginx", "-g", "daemon off;"]
 

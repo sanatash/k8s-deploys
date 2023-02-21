@@ -14,3 +14,8 @@ kubectl apply -f cheese-deployment.yaml
 kubectl apply -f cheese-ingress.yaml
 
 kubectl get pods
+
+minikube tunnel
+
+run in browser: https://ams.cheese.com/cheddar
+                https://ams.cheese.com/gauda
