@@ -1,0 +1,7 @@
+# encoding the username "root_user" in base64#
+echo -n "root_user" | base64
+# for decoding use base64 -d
+# encoding password
+echo -n "Experts!123" | base64
+# encoding database URL
+echo -n "mysql.services.com" | base64
