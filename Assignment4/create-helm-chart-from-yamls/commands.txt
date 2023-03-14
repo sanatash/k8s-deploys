@@ -1,0 +1,21 @@
+# creates default chart
+helm create my-wordpress-mysql
+
+# create the release
+helm install my-wordpress-mysql-release my-wordpress-mysql
+
+# install YAML linter
+pip install yamllint
+
+# run YAML linter to find errors in yaml files
+yamllint my-wordpress-mysql/templates/deployment.yaml
+
+kubectl get pods
+helm list
+kubectl get svc
+
+minikube service wordpress --url
+
+# This will create a .tgz file of your chart in the current directory.
+cd my-wordpress-mysql
+helm package .

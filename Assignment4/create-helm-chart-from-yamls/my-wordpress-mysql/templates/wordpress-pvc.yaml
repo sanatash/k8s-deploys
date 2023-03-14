@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.wordpress.pvc.name }}
+  labels:
+    app: {{ .Values.wordpress.pvc.labels.app }}
+spec:
+  accessModes:
+    - {{ .Values.wordpress.pvc.accessModes }}
+  resources:
+    requests:
+      storage: {{ .Values.wordpress.pvc.requests.storage }}
+---
+

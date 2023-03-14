@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.mysql.pvc.name }}
+  labels:
+    {{- toYaml .Values.mysql.pvc.labels | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.mysql.pvc.accessModes | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.mysql.pvc.requests.storage }}

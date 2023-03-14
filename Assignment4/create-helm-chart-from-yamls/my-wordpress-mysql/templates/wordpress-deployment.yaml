@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.wordpress.deployment.name }}
+  labels:
+    app: {{ .Values.wordpress.deployment.labels.app }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.wordpress.deployment.labels.app }}
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.wordpress.deployment.labels.app }}
+        tier: frontend
+    spec:
+      containers:
+      - image: {{ .Values.wordpress.deployment.image }}
+        name: {{ .Values.wordpress.deployment.name }}
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: {{ .Values.mysql.service.name }}
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+        ports:
+        - containerPort: {{ .Values.wordpress.deployment.ports.containerPort }}
+          name: {{ .Values.wordpress.deployment.ports.name }}
+        volumeMounts:
+        - name: wordpress-persistent-storage
+          mountPath: {{ .Values.wordpress.deployment.volumeMounts.mountPath }}
+      volumes:
+      - name: wordpress-persistent-storage
+        persistentVolumeClaim:
+          claimName: {{ .Values.wordpress.pvc.name }}
+
+---
+

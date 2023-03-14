@@ -1,0 +1,8 @@
+apiVersion: v2
+name: my-wordpress-mysql
+description: A Helm chart for deploying Wordpress that uses a MySQL database to store and retrieve content
+type: application
+
+# This is the chart version.
+version: 0.1.0
+appVersion: 0.15.0
