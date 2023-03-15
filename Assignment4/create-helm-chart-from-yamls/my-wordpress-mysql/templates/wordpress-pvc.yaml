@@ -4,6 +4,9 @@ metadata:
   name: {{ .Values.wordpress.pvc.name }}
   labels:
     app: {{ .Values.wordpress.pvc.labels.app }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 spec:
   accessModes:
     - {{ .Values.wordpress.pvc.accessModes }}

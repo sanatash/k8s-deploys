@@ -4,6 +4,9 @@ metadata:
   name: {{ .Values.mysql.pvc.name }}
   labels:
     {{- toYaml .Values.mysql.pvc.labels | nindent 4 }}
+  annotations:
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 spec:
   accessModes:
     - {{ .Values.mysql.pvc.accessModes | quote }}

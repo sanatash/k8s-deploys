@@ -4,6 +4,12 @@ helm create my-wordpress-mysql
 # create the release
 helm install my-wordpress-mysql-release my-wordpress-mysql
 
+# maybe you should to create this release in another namespace
+# create first namespace
+kubectl create namespace namespace-release-2
+helm install my-wordpress-mysql-release-2 my-wordpress-mysql --namespace namespace-release-2
+
+
 # install YAML linter
 pip install yamllint
 

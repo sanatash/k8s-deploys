@@ -1,0 +1,37 @@
+git clone https://github.com/sanatash/helm-chart.git
+
+# package helm char in to archive file - depends from where to call the command
+# from chart directory
+helm package my-wordpress-mysql -d /d/Anat/helm-chart/wordpress-mysql-chart.tgz
+# from directory of destination
+helm package /d/Anat/PycharmProjects/DevOpsAdvanced/k8s-deploys/Assignment4/create-helm-chart-from-yamls/my-wordpress-mysql
+
+# recreate the index.yaml file from local charts
+helm repo index --url https://sanatash.github.io/helm-chart/ .
+cat index.yaml
+
+# use the --merge flag to incrementally add new charts to an existing index.yam
+helm repo index --url https://sanatash.github.io/helm-chart/ --merge index.yaml .
+
+# add your repo locally
+helm repo add myhelmrepo https://sanatash.github.io/helm-chart/
+
+# perform update for all repo
+helm repo update
+
+# search chart in local repositories
+helm search repo my-wordpress-mysql
+
+# To list the charts in a local repository. This command will search for charts in the myhelmrepo/ directory
+helm search repo myhelmrepo/
+
+# list all local helm repositories
+helm repo list
+
+# Remove helm repo locally
+helm repo remove my-repo
+
+
+
+
+
