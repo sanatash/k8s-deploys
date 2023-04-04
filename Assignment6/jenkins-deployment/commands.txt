@@ -1,0 +1,11 @@
+minikube stop
+minikube start
+kubectl delete namespace logging
+helm repo add jenkinsrepo https://charts.jenkins.io
+helm install jenkins jenkinsrepo/jenkins --set controller.serviceType=NodePort
+kubectl get svc
+kubectl get pods
+kubectl exec --namespace default -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
+minikube service jenkins --url
+
+
