@@ -1,0 +1,6 @@
+kubectl create deployment nginx --image=nginx --replicas=3
+kubectl get deployment
+kubectl get pods
+kubectl scale deployment nginx --replicas=5
+kubectl get deployment
+kubectl get pods

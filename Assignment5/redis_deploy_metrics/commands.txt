@@ -1,0 +1,16 @@
+# Add the official Redis Helm chart repository to Helm
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+
+# Deploy the Redis chart with metrics collection enabled
+
+helm install redis bitnami/redis --set metrics.enabled=true
+
+# Verify that the Redis metrics are being collected
+# use port forwarding to access the Prometheus server
+
+kubectl port-forward svc/prometheus-server 9090:80 -n monitoring
+
+# Retrieve the values used during the redis installation of the chart
+helm get values redis > values.yaml
